@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <h3>Currently Available Books</h3>
     <div class="books">
       <div>Id</div>
       <div>Title</div>
@@ -15,5 +16,18 @@
       <div>Pages</div>
       <div>Read?</div>
     </div>
+    <h3>Add New Book</h3>
+    <form>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" minlength="3" />
+
+      <label for="author">Author:</label>
+      <input type="text" id="author" name="author" minlength="3" />
+
+      <label for="page-count">Number of pages:</label>
+      <input type="number" id="page-count" name="page-count" minlength="1" />
+
+      <button type="submit">Add Book</button>
+    </form>
   </body>
 </html>
