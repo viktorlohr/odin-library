@@ -1,14 +1,10 @@
 .books {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
   gap: 1rem;
 }
 .books > * {
   display: flex;
-}
-.books > *:nth-child(-n + 5) {
-  font-weight: bold;
-  border-bottom: 2px solid black;
+  flex-direction: column;
 }
 
 .add-book > button {

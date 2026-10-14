@@ -36,14 +36,20 @@ function addBookToLibrary(title, author, pageCount) {
   myLibrary.push(book);
 }
 
+function removeBookFromLibrary() {}
+
+// --- UI ---
+
 function updateAllBooksDisplay() {
   const booksDiv = document.querySelector(".books");
 
-  while (booksDiv.children.length > 5) {
+  while (booksDiv.children.length > 1) {
     booksDiv.removeChild(booksDiv.lastChild);
   }
 
   myLibrary.forEach((book) => {
+    let bookDiv = document.createElement("div");
+
     [book.id, book.title, book.author, book.pageCount, book.isRead].forEach(
       (property) => {
         let propertyDiv = document.createElement("div");
@@ -58,9 +64,10 @@ function updateAllBooksDisplay() {
             break;
         }
 
-        booksDiv.appendChild(propertyDiv);
+        bookDiv.appendChild(propertyDiv);
       },
     );
+    booksDiv.appendChild(bookDiv);
   });
 }
 
@@ -71,8 +78,6 @@ const bookFormInputs = Array.from(
   document.querySelectorAll(".add-book > input"),
 );
 const bookFormBtn = document.querySelector(".add-book > button");
-
-console.log("Book form inputs are: " + bookFormInputs);
 
 bookFormBtn.addEventListener("click", (e) => {
   e.preventDefault();
