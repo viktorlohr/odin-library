@@ -58,6 +58,8 @@ function updateAllBooksDisplay() {
         propertyDiv.textContent = property;
 
         let propertyClass;
+
+        // IMPORTANT: This creates unwanted behavior if any of the fields have the exact same input!
         switch (property) {
           case book.id:
             propertyClass = "id";
