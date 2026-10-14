@@ -36,6 +36,19 @@ function addBookToLibrary(title, author, pageCount) {
   myLibrary.push(book);
 }
 
+function removeBookById(id) {
+  const idx = myLibrary.findIndex((b) => b.id == id);
+  if (idx !== -1) {
+    myLibrary.splice(idx, 1);
+  }
+}
+
+// test
+removeBookById(myLibrary[0].id);
+console.log(myLibrary);
+
+// --- UI ---
+
 function updateAllBooksDisplay() {
   const booksDiv = document.querySelector(".books");
 
@@ -87,3 +100,22 @@ bookFormBtn.addEventListener("click", (e) => {
 
   updateAllBooksDisplay();
 });
+
+function removeBookbyIdUI(id) {
+  removeBookById(id);
+  updateAllBooksDisplay();
+}
+
+function addRemoveBtnsToBooks() {
+  const bookEls = Array.from(document.querySelectorAll(".book"));
+
+  bookEls.forEach((book) => {
+    let removeBtn = document.createElement("button");
+    removeBtn.textContent("Remove");
+    removeBtn.classList.add("remove");
+
+    removeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+    });
+  });
+}
