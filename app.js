@@ -49,11 +49,14 @@ function updateAllBooksDisplay() {
         let propertyDiv = document.createElement("div");
         propertyDiv.textContent = property;
 
-        // if (propertyDiv.textContent == "false") {
-        //   property.textContent = "Not yet";
-        // } else {
-        //   property.textContent = "Yes!";
-        // }
+        switch (propertyDiv.textContent) {
+          case "false":
+            propertyDiv.textContent = "Not yet";
+            break;
+          case "true":
+            propertyDiv.textContent = "Yes!";
+            break;
+        }
 
         booksDiv.appendChild(propertyDiv);
       },
