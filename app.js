@@ -111,10 +111,10 @@ const bookFormBtn = document.querySelector("#add-book > button");
 bookFormBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
-  // if (!bookForm.checkValidity()) {
-  //   console.log("Form not valid");
-  //   return;
-  // }
+  if (!bookForm.checkValidity()) {
+    console.log("Form not valid");
+    return;
+  }
 
   let inputValues = bookFormInputs.map((input) => input.value);
 
