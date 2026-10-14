@@ -1,10 +1,28 @@
+:root {
+  --text-col-primray: black;
+  --text-col-subtle: gray;
+  --background-col-primray: rgb(234, 234, 234);
+
+  /* --background-col-secondary: dodgerblue;
+  --text-col-secondary: rgb(214, 231, 248); */
+
+  --tiny-size: 0.2rem;
+  --very-small-size: 0.4rem;
+  --small-size: 0.8rem;
+  --large-size: 1.2rem;
+  --very-large-size: 1.5rem;
+  --huge-size: 2rem;
+}
+
+* {
+  color: --text-col-primary;
+  background-color: var(--background-col-primray);
+}
+
 .books {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
-}
-.books > * {
-  display: flex;
-  flex-direction: column;
 }
 
 .add-book > button {
@@ -17,6 +35,47 @@ form {
   gap: 0.5rem;
 }
 
-.id > {
-  font-size: 0.5rem;
+.book > .id {
+  font-size: 1px;
+  color: gray;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  margin: var(--tiny-size);
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 2px 2px 2px black;
+  background-color: white;
+}
+
+.card * {
+  background-color: inherit;
+}
+
+.title {
+  font-size: var(--large-size);
+  font-weight: bold;
+}
+
+.author::before {
+  content: "by ";
+}
+
+.author {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.page-count::before {
+  content: "Pages: ";
+}
+
+.page-count {
+  margin-bottom: 1rem;
+}
+
+.id {
+  margin-top: var(--large-size);
 }

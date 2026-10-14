@@ -7,13 +7,13 @@ function Book(title, author, pageCount) {
   this.pageCount = pageCount;
   this.isRead = false;
   this.info = function () {
-    function createIsReadInfoString() {
+    const createIsReadInfoString = () => {
       if (this.isRead) {
         return "already read";
       } else {
         return "not read yet";
       }
-    }
+    };
     let infoString =
       this.title +
       " by " +
@@ -50,8 +50,9 @@ function updateAllBooksDisplay() {
   myLibrary.forEach((book) => {
     let bookDiv = document.createElement("div");
     bookDiv.classList.add("book");
+    bookDiv.classList.add("card");
 
-    [book.id, book.title, book.author, book.pageCount, book.isRead].forEach(
+    [book.title, book.author, book.pageCount, book.isRead, book.id].forEach(
       (property) => {
         let propertyDiv = document.createElement("div");
         propertyDiv.textContent = property;
@@ -78,10 +79,10 @@ function updateAllBooksDisplay() {
 
         switch (propertyDiv.textContent) {
           case "false":
-            propertyDiv.textContent = "Not yet";
+            propertyDiv.textContent = "Not read yet";
             break;
           case "true":
-            propertyDiv.textContent = "Yes!";
+            propertyDiv.textContent = "Already read";
             break;
         }
 
@@ -94,14 +95,19 @@ function updateAllBooksDisplay() {
 
 updateAllBooksDisplay();
 
-const bookForm = document.querySelector(".add-book");
+const bookForm = document.querySelector("#add-book");
 const bookFormInputs = Array.from(
-  document.querySelectorAll(".add-book > input"),
+  document.querySelectorAll("#add-book > input"),
 );
-const bookFormBtn = document.querySelector(".add-book > button");
+const bookFormBtn = document.querySelector("#add-book > button");
 
 bookFormBtn.addEventListener("click", (e) => {
   e.preventDefault();
+
+  // if (!bookForm.checkValidity()) {
+  //   console.log("Form not valid");
+  //   return;
+  // }
 
   let inputValues = bookFormInputs.map((input) => input.value);
 
