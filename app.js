@@ -36,19 +36,24 @@ function addBookToLibrary(title, author, pageCount) {
   myLibrary.push(book);
 }
 
-function displayAllBooks() {
+function updateAllBooksDisplay() {
   const booksDiv = document.querySelector(".books");
+
+  while (booksDiv.children.length > 5) {
+    booksDiv.removeChild(booksDiv.lastChild);
+  }
+
   myLibrary.forEach((book) => {
     [book.id, book.title, book.author, book.pageCount, book.isRead].forEach(
       (property) => {
         let propertyDiv = document.createElement("div");
         propertyDiv.textContent = property;
 
-        if (propertyDiv.textContent == "false") {
-          property.textContent = "Not yet";
-        } else {
-          property.textContent = "Yes!";
-        }
+        // if (propertyDiv.textContent == "false") {
+        //   property.textContent = "Not yet";
+        // } else {
+        //   property.textContent = "Yes!";
+        // }
 
         booksDiv.appendChild(propertyDiv);
       },
@@ -56,4 +61,26 @@ function displayAllBooks() {
   });
 }
 
-displayAllBooks();
+updateAllBooksDisplay();
+
+const bookForm = document.querySelector(".add-book");
+const bookFormInputs = Array.from(
+  document.querySelectorAll(".add-book > input"),
+);
+const bookFormBtn = document.querySelector(".add-book > button");
+
+console.log("Book form inputs are: " + bookFormInputs);
+
+bookFormBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  let inputValues = bookFormInputs.map((input) => input.value);
+
+  console.log("input values are: " + inputValues);
+
+  addBookToLibrary(...inputValues);
+
+  console.log(myLibrary);
+
+  updateAllBooksDisplay();
+});

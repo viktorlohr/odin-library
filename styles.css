@@ -10,3 +10,7 @@
   font-weight: bold;
   border-bottom: 2px solid black;
 }
+
+.add-book > button {
+  background-color: dodgerblue;
+}
