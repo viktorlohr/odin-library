@@ -26,6 +26,10 @@ function Book(title, author, pageCount) {
   };
 }
 
+Book.prototype.toggleRead = function () {
+  this.isRead = !this.isRead;
+};
+
 // dummy books
 let someBook = new Book("Some Title", "Some Author", 100);
 let someOtherBook = new Book("Some Other Book", "Some Other Author", 100);
@@ -96,6 +100,7 @@ function updateAllBooksDisplay() {
       },
     );
     booksDiv.appendChild(bookDiv);
+    addToggleReadBtnToBook(bookDiv);
     addRemoveBtnToBook(bookDiv);
   });
 }
@@ -145,4 +150,20 @@ function addRemoveBtnToBook(bookDiv) {
   });
 
   bookDiv.appendChild(removeBtn);
+}
+
+function addToggleReadBtnToBook(bookDiv) {
+  const toggleReadBtn = document.createElement("button");
+  toggleReadBtn.textContent = "Toggle Read";
+  toggleReadBtn.classList.add("toggle-read");
+
+  toggleReadBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const bookId = bookDiv.querySelector(".id").textContent;
+    const book = myLibrary.find((b) => b.id == bookId);
+    book.toggleRead();
+    updateAllBooksDisplay();
+  });
+
+  bookDiv.appendChild(toggleReadBtn);
 }
