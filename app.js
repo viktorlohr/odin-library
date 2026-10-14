@@ -59,15 +59,20 @@ function updateAllBooksDisplay() {
         let propertyClass;
         switch (property) {
           case book.id:
-            propertyClass = "book-id";
+            propertyClass = "id";
+            break;
           case book.title:
             propertyClass = "title";
+            break;
           case book.author:
             propertyClass = "author";
+            break;
           case book.pageCount:
             propertyClass = "page-count";
+            break;
           case book.isRead:
             propertyClass = "is-read";
+            break;
         }
         propertyDiv.classList.add(propertyClass);
 
