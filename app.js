@@ -36,14 +36,18 @@ function addBookToLibrary(title, author, pageCount) {
   myLibrary.push(book);
 }
 
-function removeBookFromLibrary() {}
-
+function removeBookById(id) {
+  const idx = myLibrary.findIndex((b) => b.id == id);
+  if (idx !== -1) {
+    myLibrary.splice(idx, 1);
+  }
+}
 // --- UI ---
 
 function updateAllBooksDisplay() {
   const booksDiv = document.querySelector(".books");
 
-  while (booksDiv.children.length > 1) {
+  while (booksDiv.children.length > 0) {
     booksDiv.removeChild(booksDiv.lastChild);
   }
 
@@ -92,6 +96,7 @@ function updateAllBooksDisplay() {
       },
     );
     booksDiv.appendChild(bookDiv);
+    addRemoveBtnToBook(bookDiv);
   });
 }
 
@@ -121,3 +126,23 @@ bookFormBtn.addEventListener("click", (e) => {
 
   updateAllBooksDisplay();
 });
+
+function removeBookbyIdUI(id) {
+  removeBookById(id);
+  updateAllBooksDisplay();
+}
+
+function addRemoveBtnToBook(bookDiv) {
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "Remove";
+  removeBtn.classList.add("remove");
+
+  const bookId = bookDiv.querySelector(".id").textContent;
+
+  removeBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    removeBookbyIdUI(bookId);
+  });
+
+  bookDiv.appendChild(removeBtn);
+}
