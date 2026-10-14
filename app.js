@@ -49,11 +49,27 @@ function updateAllBooksDisplay() {
 
   myLibrary.forEach((book) => {
     let bookDiv = document.createElement("div");
+    bookDiv.classList.add("book");
 
     [book.id, book.title, book.author, book.pageCount, book.isRead].forEach(
       (property) => {
         let propertyDiv = document.createElement("div");
         propertyDiv.textContent = property;
+
+        let propertyClass;
+        switch (property) {
+          case book.id:
+            propertyClass = "book-id";
+          case book.title:
+            propertyClass = "title";
+          case book.author:
+            propertyClass = "author";
+          case book.pageCount:
+            propertyClass = "page-count";
+          case book.isRead:
+            propertyClass = "is-read";
+        }
+        propertyDiv.classList.add(propertyClass);
 
         switch (propertyDiv.textContent) {
           case "false":
