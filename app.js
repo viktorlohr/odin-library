@@ -116,6 +116,7 @@ function addRemoveBtnsToBooks() {
 
     removeBtn.addEventListener("click", (e) => {
       e.preventDefault();
+      removeBookByIdUI(book.id);
     });
   });
 }
