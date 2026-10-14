@@ -1,8 +1,12 @@
 .books {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
 }
 .books > * {
   display: flex;
-  gap: 2rem;
+}
+.books > *:nth-child(-n + 5) {
+  font-weight: bold;
+  border-bottom: 2px solid black;
 }
