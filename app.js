@@ -1,12 +1,14 @@
 const myLibrary = [];
 
-function Book(title, author, pageCount) {
-  this.id = crypto.randomUUID();
-  this.title = title;
-  this.author = author;
-  this.pageCount = pageCount;
-  this.isRead = false;
-  this.info = function () {
+class Book {
+  constructor(title, author, pageCount) {
+    this.id = crypto.randomUUID();
+    this.title = title;
+    this.author = author;
+    this.pageCount = pageCount;
+    this.isRead = false;
+  }
+  info = function () {
     const createIsReadInfoString = () => {
       if (this.isRead) {
         return "already read";
@@ -14,6 +16,7 @@ function Book(title, author, pageCount) {
         return "not read yet";
       }
     };
+
     let infoString =
       this.title +
       " by " +
@@ -22,7 +25,9 @@ function Book(title, author, pageCount) {
       this.pageCount +
       " pages long, " +
       createIsReadInfoString();
+
     console.log(infoString);
+    return infoString;
   };
 }
 
