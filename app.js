@@ -172,3 +172,22 @@ function addToggleReadBtnToBook(bookDiv) {
 
   bookDiv.appendChild(toggleReadBtn);
 }
+
+function renderFormValidationMessage(inputEl) {
+  if (inputEl.validationMessage) {
+    inputEl.style.borderColor = "red";
+  } else {
+    inputEl.style.borderColor = "black";
+  }
+
+  const labelEl = document.querySelector(`label[for=${inputEl.id}]`);
+  if (!labelEl) {
+    console.log("Could not find label element for " + inputEl.id);
+    return;
+  }
+
+  const messageEl = document.createElement("span");
+  messageEl.textContent = " " + inputEl.validationMessage;
+
+  labelEl.appendChild(messageEl);
+}
