@@ -40,6 +40,8 @@ let someBook = new Book("Some Title", "Some Author", 100);
 let someOtherBook = new Book("Some Other Book", "Some Other Author", 100);
 myLibrary.push(someBook, someOtherBook);
 
+// ----
+
 function addBookToLibrary(title, author, pageCount) {
   let book = new Book(title, author, pageCount);
   myLibrary.push(book);
@@ -52,6 +54,11 @@ function removeBookById(id) {
   }
 }
 // --- UI ---
+
+updateAllBooksDisplay();
+addFormValidationEventListeners();
+
+// -----
 
 function updateAllBooksDisplay() {
   const booksDiv = document.querySelector(".books");
@@ -109,8 +116,6 @@ function updateAllBooksDisplay() {
     addRemoveBtnToBook(bookDiv);
   });
 }
-
-updateAllBooksDisplay();
 
 const bookForm = document.querySelector("#add-book");
 const bookFormInputs = Array.from(
@@ -173,7 +178,19 @@ function addToggleReadBtnToBook(bookDiv) {
   bookDiv.appendChild(toggleReadBtn);
 }
 
+function addFormValidationEventListeners() {
+  const inputEls = Array.from(document.querySelectorAll("input"));
+  inputEls.forEach((el) => {
+    el.addEventListener("blur", (e) => {
+      renderFormValidationMessage(el);
+      console.log("foo");
+    });
+  });
+}
+
 function renderFormValidationMessage(inputEl) {
+  validateInput(inputEl);
+
   if (inputEl.validationMessage) {
     inputEl.style.borderColor = "red";
   } else {
@@ -187,7 +204,17 @@ function renderFormValidationMessage(inputEl) {
   }
 
   const messageEl = document.createElement("span");
+  messageEl.classList.add("error");
   messageEl.textContent = " " + inputEl.validationMessage;
 
   labelEl.appendChild(messageEl);
+}
+
+function validateInput(inputEl) {
+  switch (inputEl.id) {
+    case "title":
+      if (inputEl.value.length < 3) {
+        inputEl.setCustomValidity("Title is too short");
+      }
+  }
 }

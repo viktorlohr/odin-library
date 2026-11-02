@@ -79,3 +79,7 @@ form {
 .id {
   margin-top: var(--large-size);
 }
+
+.error {
+  color: red;
+}
